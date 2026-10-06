@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>刘静怡的小天地 | 个人介绍</title>
+<style>
+  /* ===== 基础重置 ===== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #f472b6;
+    --primary-dark: #ec4899;
+    --accent: #fbbf24;
+    --bg: #fff9fb;
+    --text: #374151;
+    --muted: #6b7280;
+    --card: #fff;
+    --border: #fce7f3;
+    --soft: #fdf2f8;
+  }
+  body.dark {
+    --primary: #f9a8d4;
+    --primary-dark: #f472b6;
+    --accent: #fcd34d;
+    --bg: #1a1625;
+    --text: #f3e8ff;
+    --muted: #c4b5d4;
+    --card: #2a2338;
+    --border: #4a3f5c;
+    --soft: #2a2338;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: background .3s, color .3s;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ===== 导航栏 ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(255,249,251,.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  body.dark nav { background: rgba(26,22,37,.8); }
+  .logo { font-weight: 700; font-size: 1.2rem; color: var(--primary); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { font-size: .95rem; color: var(--muted); transition: color .2s; }
+  .nav-links a:hover { color: var(--primary); }
+  #theme-toggle {
+    background: none; border: 1px solid var(--border); border-radius: 50%;
+    width: 36px; height: 36px; cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .3s;
+  }
+  #theme-toggle:hover { transform: rotate(20deg); }
+
+  /* ===== 通用容器 ===== */
+  section { padding: 6rem 2rem 4rem; max-width: 900px; margin: 0 auto; }
+  .section-title {
+    font-size: 1.8rem; font-weight: 700; margin-bottom: .5rem;
+    color: var(--primary-dark);
+  }
+  .section-sub { color: var(--muted); margin-bottom: 3rem; font-size: .95rem; }
+
+  /* ===== 首页 Hero ===== */
+  #hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding-top: 4rem;
+  }
+  .avatar {
+    width: 140px; height: 140px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; color: #fff; font-weight: 700;
+    box-shadow: 0 10px 40px rgba(244,114,182,.35);
+    margin-bottom: 2rem; animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  #hero h1 { font-size: 2.5rem; margin-bottom: .5rem; }
+  #hero .name { color: var(--primary-dark); }
+  #hero .role { font-size: 1.1rem; color: var(--primary); font-weight: 500; margin-bottom: 1.5rem; }
+  #hero .tagline { color: var(--muted); max-width: 550px; margin-bottom: 2rem; }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    display: inline-block; padding: .7rem 1.8rem; border-radius: 50px;
+    font-weight: 500; font-size: .95rem; cursor: pointer; border: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(244,114,182,.35); }
+  .btn-ghost { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+  .btn-ghost:hover { background: var(--primary); color: #fff; }
+
+  /* ===== 关于我 ===== */
+  .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; }
+  .about-text p { margin-bottom: 1rem; color: var(--text); }
+  .info-tags { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.5rem; }
+  .info-tag {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .4rem 1rem; background: var(--soft); border-radius: 50px;
+    font-size: .9rem; color: var(--primary-dark);
+  }
+
+  /* ===== 兴趣爱好 ===== */
+  .hobbies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .hobby-card {
+    background: var(--card); padding: 2rem; border-radius: 1.5rem;
+    border: 1px solid var(--border); transition: transform .2s, box-shadow .2s;
+    text-align: center;
+  }
+  .hobby-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(244,114,182,.15); }
+  .hobby-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .hobby-card h3 { margin-bottom: .5rem; color: var(--primary-dark); }
+  .hobby-card p { font-size: .9rem; color: var(--muted); }
+
+  /* ===== 我的日常 ===== */
+  .daily-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .daily-item {
+    background: var(--card); padding: 1.5rem 2rem; border-radius: 1rem;
+    border: 1px solid var(--border); display: flex; align-items: center; gap: 1.5rem;
+    transition: transform .2s;
+  }
+  .daily-item:hover { transform: translateX(6px); }
+  .daily-emoji { font-size: 2rem; }
+  .daily-text h4 { margin-bottom: .2rem; color: var(--primary-dark); }
+  .daily-text p { font-size: .9rem; color: var(--muted); }
+
+  /* ===== 留言 ===== */
+  .guestbook {
+    background: var(--card); border-radius: 1.5rem; padding: 2rem;
+    border: 1px solid var(--border); text-align: center;
+  }
+  .guestbook-text {
+    font-size: 1.05rem; color: var(--muted); font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ===== 页脚 ===== */
+  footer { text-align: center; padding: 2rem; color: var(--muted); border-top: 1px solid var(--border); font-size: .9rem; }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; text-align: center; }
+    #hero h1 { font-size: 2rem; }
+    section { padding: 4rem 1.5rem 3rem; }
+    .info-tags { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">🌸 静怡的小天地</div>
+  <ul class="nav-links">
+    <li><a href="#hero">首页</a></li>
+    <li><a href="#about">关于我</a></li>
+    <li><a href="#hobbies">兴趣爱好</a></li>
+    <li><a href="#daily">我的日常</a></li>
+  </ul>
+  <button id="theme-toggle" title="切换主题">🌙</button>
+</nav>
+
+<!-- ===== 首页 ===== -->
+<section id="hero">
+  <div class="avatar">怡</div>
+  <h1>你好呀，我是 <span class="name">刘静怡</span> ✨</h1>
+  <p class="role">18岁 · 喜欢听歌和写作</p>
+  <p class="tagline">一个普通但认真生活的女孩，用音乐治愈心情，用文字记录生活。欢迎来到我的小天地，一起感受生活中的小美好吧～</p>
+  <div class="btn-group">
+    <a href="#about" class="btn btn-primary">了解更多</a>
+    <a href="#daily" class="btn btn-ghost">看看日常</a>
+  </div>
+</section>
+
+<!-- ===== 关于我 ===== -->
+<section id="about">
+  <h2 class="section-title">关于我</h2>
+  <p class="section-sub">一点点关于我的小事</p>
+  <div class="about-grid">
+    <div>
+      <div class="avatar" style="width:180px;height:180px;font-size:4.5rem;margin:0 auto;">怡</div>
+    </div>
+    <div class="about-text">
+      <p>嗨～我叫刘静怡，今年 18 岁。一个安静但内心丰富的女生，喜欢在安静的角落里听歌，也喜欢拿起笔写下心里的想法。</p>
+      <p>对我来说，音乐和文字是生活中最重要的两样东西——音乐让心情有了出口，文字让回忆有了形状。希望能在这里认识更多有趣的灵魂！</p>
+      <div class="info-tags">
+        <span class="info-tag">🎂 18岁</span>
+        <span class="info-tag">🎵 音乐爱好者</span>
+        <span class="info-tag">✍️ 文字爱好者</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 兴趣爱好 ===== -->
+<section id="hobbies">
+  <h2 class="section-title">兴趣爱好</h2>
+  <p class="section-sub">让我开心的那些小事</p>
+  <div class="hobbies-grid">
+    <div class="hobby-card">
+      <div class="hobby-icon">🎵</div>
+      <h3>听歌</h3>
+      <p>音乐是生活的底色。喜欢在不同的情绪里找到对应的歌，单曲循环到天荒地老。</p>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">✍️</div>
+      <h3>写作</h3>
+      <p>用文字记录心情、故事和灵感。喜欢写一些小诗和随笔，留住那些转瞬即逝的念头。</p>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">📚</div>
+      <h3>阅读</h3>
+      <p>喜欢散文和小说，在别人的故事里找到共鸣，也在文字里遇见更好的自己。</p>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">☕</div>
+      <h3>发呆</h3>
+      <p>有时候什么都不做，只是安静地发呆，也是一种治愈。享受独处的时光。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 我的日常 ===== -->
+<section id="daily">
+  <h2 class="section-title">我的日常</h2>
+  <p class="section-sub">平凡日子里的小确幸</p>
+  <div class="daily-list">
+    <div class="daily-item">
+      <div class="daily-emoji">🌅</div>
+      <div class="daily-text">
+        <h4>早晨的旋律</h4>
+        <p>每天醒来第一件事，戴上耳机放一首喜欢的歌，用音乐开启一天的好心情。</p>
+      </div>
+    </div>
+    <div class="daily-item">
+      <div class="daily-emoji">📝</div>
+      <div class="daily-text">
+        <h4>随手记录</h4>
+        <p>遇到有意思的事、突然冒出的想法，都会随手记下来，攒成生活的素材。</p>
+      </div>
+    </div>
+    <div class="daily-item">
+      <div class="daily-emoji">🌙</div>
+      <div class="daily-text">
+        <h4>深夜写作</h4>
+        <p>晚上是灵感最多的时候，安静地写点东西，和自己对话，是一天里最舒服的时光。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 留言 ===== -->
+<section id="contact">
+  <div class="guestbook">
+    <p class="guestbook-text">"愿你我都能在自己热爱的世界里，闪闪发光。"</p>
+    <p style="color:var(--muted);font-size:.9rem;">—— 来自静怡的小天地 🌸</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 刘静怡 · 用 🎵 和 ✍️ 制作</p>
+</footer>
+
+<script>
+  /* 主题切换 */
+  const toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    toggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+  });
+
+  /* 平滑高亮当前导航 */
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.querySelectorAll('.nav-links a').forEach(l => l.style.color = '');
+      link.style.color = 'var(--primary)';
+    });
+  });
+</script>
+</body>
+</html>
